@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kortstie  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kortstie
+  template:
+    metadata:
+      labels:
+        app: kortstie
+    spec:
+      containers:
+      - name: kortstie
+        image: kortstieacr.azurecr.io/sampleapp:1cd9561f3f52181d1eaef5764b30557a47a2ca6a
+        ports:
+        - containerPort: 5000
+        env:
+        - name: TITLE
+          value: "Welcome to Azure Kubernetes Service (AKS)"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kortstie 
+spec:
+  type: LoadBalancer #default
+  ports:
+  - port: 5000
+    targetPort: 5000
+  selector:
+    app: kortstie
