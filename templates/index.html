@@ -9,6 +9,11 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            flex-direction: column;
+        }
+        h1 {
+            color: white;
+            margin-bottom: 20px;
         }
         table {
             background-color: rgb(47, 47, 168);
@@ -25,13 +30,14 @@
     </style>
 </head>
 <body>
+    <h1>K8s Values</h1>
     <table>
         <tr>
-            <th>Header 1</th>
+            <th>Node Name</th>
             <th>Header 2</th>
         </tr>
         <tr>
-            <td>Data 1</td>
+            <td>{{ node_name }}/td>
             <td>Data 2</td>
         </tr>
     </table>

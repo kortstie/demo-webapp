@@ -14,12 +14,16 @@ spec:
     spec:
       containers:
       - name: kortstie
-        image: kortstieacr.azurecr.io/sampleapp:b3ac0f917d7717de37f1411b447613e4d13ca738
+        image: kortstieacr.azurecr.io/sampleapp:b4b4db9b6f265b4b6eece1eb58a36b9d3a1b3aa0
         ports:
         - containerPort: 5000
         env:
         - name: TITLE
           value: "Welcome to Azure Kubernetes Service (AKS)"
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
 ---
 apiVersion: v1
 kind: Service
