@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: kortstie
-        image: kortstieacr.azurecr.io/sampleapp:a5b337ac071f4efdbbee0578e160a7f7c835e531
+        image: kortstieacr.azurecr.io/sampleapp:2af6dcd7366f4d62ae3effc521251dca7ee91849
         ports:
         - containerPort: 5000
         env:
