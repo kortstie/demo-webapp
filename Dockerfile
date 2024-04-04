@@ -1,13 +1,9 @@
 FROM python:3.8-slim
 
-#WORKDIR /usr/app
-
-#ENV FLASK_ENV development
-ENV FLASK_APP app
+ENV FLASK_APP app.py
 
 COPY app.py ./
 COPY templates templates/
-COPY static static/
 COPY requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt
