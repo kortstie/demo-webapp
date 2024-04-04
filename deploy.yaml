@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: kortstie
-        image: kortstieacr.azurecr.io/sampleapp:b4b4db9b6f265b4b6eece1eb58a36b9d3a1b3aa0
+        image: kortstieacr.azurecr.io/sampleapp:231cc4361d540ec0730fa757e0d6ae1b2ab181d7
         ports:
         - containerPort: 5000
         env:
@@ -24,6 +24,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        - name: REPLICAS
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.replicas
 ---
 apiVersion: v1
 kind: Service
