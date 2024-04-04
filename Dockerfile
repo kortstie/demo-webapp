@@ -10,6 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5000
 
 # Run main.py when the container launches
-ENTRYPOINT [ "flask" ]
+#ENTRYPOINT [ "flask" ]
 # run the app main.py
-CMD [ "run" ]
+CMD [ "flask", "run", "--host=0.0.0.0" ]
