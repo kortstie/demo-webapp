@@ -5,7 +5,6 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     node_name = os.getenv('NODE_NAME', 'Unknown')
-    replicas = os.getenv('REPLICAS', 'Unknown')
     return render_template('index.html', node_name=node_name)
 
 if __name__ == '__main__':
