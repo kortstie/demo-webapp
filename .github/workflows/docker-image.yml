@@ -24,3 +24,18 @@ jobs:
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
 
+        # Deploy to Azure Kubernetes Service
+        - name: 'Deploy to Azure Kubernetes Service'
+          uses: azure/aks-set-context@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+            cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
+            resource-group: ${{ secrets.AKS_RESOURCE_GROUP }}
+        - run: |
+            kubectl set image deployment/sampleapp sampleapp=${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
+
+        - name: 'Logout via Azure CLI'
+          uses: azure/logout@v1
+
+             
+
