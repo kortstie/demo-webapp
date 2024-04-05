@@ -11,6 +11,7 @@ def home():
     v1 = client.VersionApi()
     k8s_version_info = v1.get_code()
     k8s_version = k8s_version_info.git_version
+    node_info = v1.read_node(name=node_name)
     nodepool_name = node_info.metadata.labels.get('agentpool', 'Unknown')
     failure_domain_zone = node_info.metadata.labels.get('failure-domain.beta.kubernetes.io/zone', 'Unknown')
     failure_domain_region = node_info.metadata.labels.get('failure-domain.beta.kubernetes.io/region', 'Unknown')
