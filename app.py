@@ -14,6 +14,10 @@ def home():
     
     core_api = client.CoreV1Api()
     nodes = core_api.list_node().items
+    
+    apps_v1_api = client.AppsV1Api()
+    deployment = apps_v1_api.read_namespaced_deployment(name='demo', namespace='demo')
+    replicas = deployment.status.replicas
 
     node_data = []
     for node in nodes:
@@ -33,4 +37,4 @@ def home():
             'memory_capacity': memory_capacity
         })
     
-    return render_template('index.html', k8s_version=k8s_version, node_data=node_data)
+    return render_template('index.html', k8s_version=k8s_version, node_data=node_data, replicas=replicas)

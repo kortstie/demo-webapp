@@ -31,14 +31,25 @@
     </style>
 </head>
 <body>
-    <h1>K8s Values</h1>
+    <h3>K8s Values</h3>
     <table>
         <tr>
             <th>K8s Version</th>
             <td>{{ k8s_version }}</td>
         </tr>
     </table>
-    <h1>Node Values</h1>
+
+    <h3>Deployment Values</h3>
+    <table>
+        <tr>
+            <th>Replicas</th>
+        </tr>
+        <tr>
+            <td>{{ {{ replicas }} }}</td>
+        </tr>
+    </table>
+    
+    <h3>Node Values</h3>
     <table>
         <tr>
             <th>Node Name</th>
