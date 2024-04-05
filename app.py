@@ -7,11 +7,15 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     node_name = os.getenv('NODE_NAME', 'Unknown')
+    
     config.load_incluster_config()
-    v1 = client.VersionApi()
-    k8s_version_info = v1.get_code()
+    
+    version_api = client.VersionApi()
+    k8s_version_info = version_api.get_code()
     k8s_version = k8s_version_info.git_version
-    node_info = v1.read_node(name=node_name)
+    
+    core_api = client.CoreV1Api()
+    node_info = core_api.read_node(name=node_name)
     nodepool_name = node_info.metadata.labels.get('agentpool', 'Unknown')
     failure_domain_zone = node_info.metadata.labels.get('failure-domain.beta.kubernetes.io/zone', 'Unknown')
     failure_domain_region = node_info.metadata.labels.get('failure-domain.beta.kubernetes.io/region', 'Unknown')
