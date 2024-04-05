@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: demoacr.azurecr.io/sampleapp:v1  
+        image: kortstieacr.azurecr.io/sampleapp:v1  
         ports:
         - containerPort: 5000
         env:
