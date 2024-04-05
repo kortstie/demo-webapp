@@ -48,15 +48,16 @@
             <th>Failure Domain Zone</th>
             <th>Failure Domain Region</th>
         </tr>
+        {% for node in node_data %}
         <tr>
-            <td>{{ node_name }}</td>
-            <td>{{ nodepool_name }}</td>
-            <td>{{ cpu_capacity }}</td>
-            <td>{{ memory_capacity }}</td>
-
-            <td>{{ failure_domain_zone }}</td>
-            <td>{{ failure_domain_region }}</td>
+            <td>{{ node.node_name }}</td>
+            <td>{{ node.nodepool_name }}</td>
+            <td>{{ node.failure_domain_zone }}</td>
+            <td>{{ node.failure_domain_region }}</td>
+            <td>{{ node.cpu_capacity }}</td>
+            <td>{{ node.memory_capacity }}</td>
         </tr>
+        {% endfor %}
     </table>
 </body>
 </html>
