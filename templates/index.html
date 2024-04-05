@@ -52,10 +52,10 @@
         <tr>
             <td>{{ node.node_name }}</td>
             <td>{{ node.nodepool_name }}</td>
-            <td>{{ node.failure_domain_zone }}</td>
-            <td>{{ node.failure_domain_region }}</td>
             <td>{{ node.cpu_capacity }}</td>
             <td>{{ node.memory_capacity }}</td>
+            <td>{{ node.failure_domain_zone }}</td>
+            <td>{{ node.failure_domain_region }}</td>
         </tr>
         {% endfor %}
     </table>
