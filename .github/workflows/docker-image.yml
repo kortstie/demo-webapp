@@ -33,16 +33,14 @@ jobs:
         - name: 'create demo namespace'
           uses: Azure/k8s-deploy@v5
           with:
-            manifests: |
-              apiVersion: v1
-              kind: Namespace
-              metadata:
-                name: demo
-            
+            manifests: 10-namespace.yaml
+             
         - name: 'Deploy to AKS'
           uses: Azure/k8s-deploy@v5
           with:
-            manifests: k8s-manifests/
+            manifests: |
+              k8s-manifests/20-deployment.yaml
+              k8s-manifests/30-service.yaml
             namespace: demo
             images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}'
   
