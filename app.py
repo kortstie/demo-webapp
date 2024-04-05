@@ -40,7 +40,9 @@ def home():
         failure_domain_zone = node.metadata.labels.get('failure-domain.beta.kubernetes.io/zone', 'Unknown')
         failure_domain_region = node.metadata.labels.get('failure-domain.beta.kubernetes.io/region', 'Unknown')
         cpu_capacity = node.status.capacity.get('cpu', 'Unknown')
-        memory_capacity = node.status.capacity.get('memory', 'Unknown')
+        memory_capacity_gb = int(node.status.capacity['memory'].strip('Ki')) / 1024 / 1024
+        pod_count = sum(pod.spec.node_name == node_name for pod in pods)
+        
 
         node_data.append({
             'node_name': node_name,
@@ -48,7 +50,8 @@ def home():
             'failure_domain_zone': failure_domain_zone,
             'failure_domain_region': failure_domain_region,
             'cpu_capacity': cpu_capacity,
-            'memory_capacity': memory_capacity
+            'memory_capacity': memory_capacity_gb,
+            'pod_count': pod_count
         })
     
     return render_template('index.html', k8s_version=k8s_version, node_data=node_data, replicas=replicas, pod_data=pod_data)

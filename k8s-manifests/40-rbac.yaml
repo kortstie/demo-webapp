@@ -4,7 +4,7 @@ metadata:
   name: node-reader
 rules:
 - apiGroups: [""]
-  resources: ["nodes"]
+  resources: ["nodes","pods"]
   verbs: ["get", "watch", "list"]
 - apiGroups: ["apps"]
   resources: ["deployments"]
