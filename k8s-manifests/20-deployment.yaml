@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kortstie  
+  name: demo  
   namespace: demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kortstie
+      app: demo
   template:
     metadata:
       labels:
-        app: kortstie
+        app: demo
     spec:
       containers:
-      - name: kortstie
-        image: kortstieacr.azurecr.io/sampleapp:v1  
+      - name: demo
+        image: demoacr.azurecr.io/sampleapp:v1  
         ports:
         - containerPort: 5000
         env:
