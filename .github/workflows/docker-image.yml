@@ -30,9 +30,19 @@ jobs:
             resource-group: 'kortstierg'
             cluster-name: 'kortstieaks'
 
+        - name: 'create demo namespace'
+          uses: Azure/k8s-deploy@v5
+          with:
+            manifests: |
+              apiVersion: v1
+              kind: Namespace
+              metadata:
+                name: demo
+            
         - name: 'Deploy to AKS'
           uses: Azure/k8s-deploy@v5
           with:
             manifests: k8s-manifests/
+            namespace: demo
             images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}'
   
