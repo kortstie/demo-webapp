@@ -4,7 +4,7 @@ from kubernetes import client, config
 
 app = Flask(__name__)
 
-@@app.route('/')
+@app.route('/')
 def home():
     config.load_incluster_config()
     
