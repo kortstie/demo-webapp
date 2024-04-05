@@ -43,12 +43,17 @@
         <tr>
             <th>Node Name</th>
             <th>Nodepool Name</th>
+            <th>CPU</th>
+            <th>Memory</th>
             <th>Failure Domain Zone</th>
             <th>Failure Domain Region</th>
         </tr>
         <tr>
             <td>{{ node_name }}</td>
             <td>{{ nodepool_name }}</td>
+            <td>{{ cpu_capacity }}</td>
+            <td>{{ memory_capacity }}</td>
+
             <td>{{ failure_domain_zone }}</td>
             <td>{{ failure_domain_region }}</td>
         </tr>
