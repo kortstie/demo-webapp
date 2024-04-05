@@ -29,7 +29,7 @@ jobs:
           uses: azure/aks-set-context@v1
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
-            cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
-            resource-group: ${{ secrets.AKS_RESOURCE_GROUP }}
+            cluster-name: ${{ env.AKS_CLUSTER_NAME }}
+            resource-group: ${{ env.AKS_RESOURCE_GROUP }}
         - run: |
             kubectl set image deployment/sampleapp sampleapp=${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
