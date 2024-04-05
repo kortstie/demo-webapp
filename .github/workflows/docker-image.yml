@@ -33,7 +33,7 @@ jobs:
         - name: 'create demo namespace'
           uses: Azure/k8s-deploy@v5
           with:
-            manifests: 10-namespace.yaml
+            manifests: k8s-manifests/10-namespace.yaml
              
         - name: 'Deploy to AKS'
           uses: Azure/k8s-deploy@v5
