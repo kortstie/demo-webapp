@@ -9,7 +9,8 @@ def home():
     node_name = os.getenv('NODE_NAME', 'Unknown')
     config.load_incluster_config()
     v1 = client.VersionApi()
-    k8s_version = v1.get_code()
+    k8s_version_info = v1.get_code()
+    k8s_version = k8s_version_info.git_version
     return render_template('index.html', node_name=node_name, k8s_version=k8s_version)
 
 if __name__ == '__main__':
