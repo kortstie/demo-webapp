@@ -19,6 +19,20 @@ def home():
     deployment = apps_v1_api.read_namespaced_deployment(name='demo', namespace='demo')
     replicas = deployment.status.replicas
 
+    pod_data = []
+    pods = core_api.list_namespaced_pod(namespace='demo').items
+    for pod in pods:
+        if pod.metadata.labels.get('app') == 'demo':
+            pod_name = pod.metadata.name
+            pod_status = pod.status.phase
+            pod_node = pod.spec.node_name
+
+            pod_data.append({
+                'pod_name': pod_name,
+                'pod_status': pod_status,
+                'pod_node': pod_node
+            })
+
     node_data = []
     for node in nodes:
         node_name = node.metadata.name
@@ -37,4 +51,4 @@ def home():
             'memory_capacity': memory_capacity
         })
     
-    return render_template('index.html', k8s_version=k8s_version, node_data=node_data, replicas=replicas)
+    return render_template('index.html', k8s_version=k8s_version, node_data=node_data, replicas=replicas, pod_data=pod_data)

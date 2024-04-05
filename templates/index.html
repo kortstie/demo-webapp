@@ -44,7 +44,7 @@
         </tr>
     </table>
 
-    <h3>Deployment Values</h3>
+    <h3>Deployment</h3>
     <table>
         <tr>
             <th>Replicas</th>
@@ -54,7 +54,23 @@
         </tr>
     </table>
 
-    <h3>Node Values</h3>
+    <h3>Pods</h3>
+    <table>
+        <tr>
+            <th>Pod Name</th>
+            <th>Pod Status</th>
+            <th>Pod Node</th>
+        </tr>
+        {% for pod in pod_data %}
+        <tr>
+            <td>{{ pod.pod_name }}</td>
+            <td>{{ pod.pod_status }}</td>
+            <td>{{ pod.pod_node }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h3>Nodes</h3>
     <table>
         <tr>
             <th>Node Name</th>
