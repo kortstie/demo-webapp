@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kortstie  
+  namespace: demo
 spec:
   replicas: 1
-  namespace: demo
   selector:
     matchLabels:
       app: kortstie
