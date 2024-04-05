@@ -20,9 +20,8 @@ def home():
     failure_domain_zone = node_info.metadata.labels.get('failure-domain.beta.kubernetes.io/zone', 'Unknown')
     failure_domain_region = node_info.metadata.labels.get('failure-domain.beta.kubernetes.io/region', 'Unknown')
     
-    return render_template('index.html', node_name=node_name, nodepool_name=nodepool_name, failure_domain_zone=failure_domain_zone, failure_domain_region=failure_domain_region)
-    return render_template('index.html', node_name=node_name, k8s_version=k8s_version)
-
+    return render_template('index.html', k8s_version=k8s_version, node_name=node_name, nodepool_name=nodepool_name, failure_domain_zone=failure_domain_zone, failure_domain_region=failure_domain_region)
+    
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
 
