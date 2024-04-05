@@ -11,15 +11,8 @@ jobs:
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-        - uses: azure/aks-set-context@v3
-          with:
-              resource-group: 'kortstierg'
-              cluster-name: 'kortstieaks'
-
-        # checkout the repo
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@main
-
 
         - name: 'Build and push image'
           uses: azure/docker-login@v1
@@ -28,15 +21,20 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}
 
-        # Deploy to Azure Kubernetes Service
-        - name: 'Deploy to Azure Kubernetes Service'
-          uses: azure/aks-set-context@v1
+        - name: 'set AKS context'
+          uses: azure/aks-set-context@v3
           with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
-            cluster-name: ${{ env.AKS_CLUSTER_NAME }}
-            resource-group: ${{ env.AKS_RESOURCE_GROUP }}
-        - run: |
-            kubectl set image deployment/sampleapp sampleapp=${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
+            resource-group: 'kortstierg'
+            cluster-name: 'kortstieaks'
+
+        - name: 'Deploy to AKS'
+          uses: Azure/k8s-deploy@v5
+          with:
+            namespace: 'demo'
+            manifests: |
+              deploy.yaml
+            images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}'
+  
