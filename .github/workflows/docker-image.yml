@@ -33,9 +33,3 @@ jobs:
             resource-group: ${{ secrets.AKS_RESOURCE_GROUP }}
         - run: |
             kubectl set image deployment/sampleapp sampleapp=${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
-
-        - name: 'Logout via Azure CLI'
-          uses: azure/logout@v1
-
-             
-
