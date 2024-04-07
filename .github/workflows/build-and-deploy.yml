@@ -2,7 +2,7 @@ on: [push]
 name: Linux_Container_Workflow
 
 jobs:
-    build-and-push-image:
+    build-and-deploy:
         runs-on: ubuntu-latest
         steps:
 
@@ -19,14 +19,6 @@ jobs:
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}
 
-    deply-to-aks:
-        needs: build-and-push-image
-        runs-on: ubuntu-latest
-        steps:
-
-        - name: 'Checkout GitHub Action'
-          uses: actions/checkout@main
-          
         - name: 'Login via Azure CLI'
           uses: azure/login@v1
           with:
@@ -35,8 +27,8 @@ jobs:
         - name: 'set AKS context'
           uses: azure/aks-set-context@v3
           with:
-            resource-group: 'kortstierg'
-            cluster-name: 'kortstieaks'
+            resource-group: '${{ secrets.PROJECT_NAME }}rg'
+            cluster-name: '${{ secrets.PROJECT_NAME }}aks'
 
         - name: 'create demo namespace'
           uses: Azure/k8s-deploy@v5
@@ -49,6 +41,7 @@ jobs:
             manifests: |
               k8s-manifests/20-deployment.yaml
               k8s-manifests/30-service.yaml
+              k8s-manifests/40-rbac.yaml
             namespace: demo
             images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}'
   
