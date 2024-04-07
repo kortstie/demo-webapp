@@ -29,6 +29,8 @@ com/kortstie/azure-aks-setup-manual)
 
 ### What happens here?
 
+Github actions starts a runner
+
 
 
 
