@@ -14,7 +14,7 @@ com/kortstie/azure-aks-setup-manual)
 
 ## HowTo deploy this app
 
-### 
+### Setup github secrets
 
 - github web ui: go to settings --> Secrets and variables --> Actions
 - create the following secrets
@@ -26,6 +26,8 @@ com/kortstie/azure-aks-setup-manual)
 | AZURE_CREDENTIALS     | complete output of the **az ad sp ...** command       |
 | REGISTRY_USERNAME | clientId value (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) |
 | REGISTRY_PASSWORD | clientSecret value |
+
+### 
 
 
 
