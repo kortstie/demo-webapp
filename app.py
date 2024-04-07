@@ -46,6 +46,7 @@ def home():
         for condition in node.status.conditions:
             if condition.type == 'Ready':
                 node_status = condition.status
+        is_cordoned = node.spec.unschedulable or False
         
 
         node_data.append({
@@ -56,7 +57,8 @@ def home():
             'cpu_capacity': cpu_capacity,
             'memory_capacity': memory_capacity_gb,
             'pod_count': pod_count,
-            'node_status': node_status
+            'node_status': node_status,
+            'is_cordoned': is_cordoned
         })
     
     return render_template('index.html', k8s_version=k8s_version, node_data=node_data, replicas=replicas, pod_data=pod_data)
