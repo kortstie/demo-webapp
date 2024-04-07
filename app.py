@@ -42,6 +42,10 @@ def home():
         cpu_capacity = node.status.capacity.get('cpu', 'Unknown')
         memory_capacity_gb = round(int(node.status.capacity['memory'].strip('Ki')) / 1024 / 1024, 2)
         pod_count = sum(pod.spec.node_name == node_name for pod in pods)
+        node_status = 'Unknown'
+        for condition in node.status.conditions:
+            if condition.type == 'Ready':
+                node_status = condition.status
         
 
         node_data.append({
@@ -51,7 +55,8 @@ def home():
             'failure_domain_region': failure_domain_region,
             'cpu_capacity': cpu_capacity,
             'memory_capacity': memory_capacity_gb,
-            'pod_count': pod_count
+            'pod_count': pod_count,
+            'node_status': node_status
         })
     
     return render_template('index.html', k8s_version=k8s_version, node_data=node_data, replicas=replicas, pod_data=pod_data)
