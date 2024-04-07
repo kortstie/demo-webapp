@@ -20,6 +20,7 @@ jobs:
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}
 
     deply-to-aks:
+        needs: build-and-push-image
         runs-on: ubuntu-latest
         steps:
         - name: 'Login via Azure CLI'

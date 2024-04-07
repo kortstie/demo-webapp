@@ -27,7 +27,7 @@ com/kortstie/azure-aks-setup-manual)
 | REGISTRY_USERNAME | clientId value (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) |
 | REGISTRY_PASSWORD | clientSecret value |
 
-### 
+### What happens here?
 
 
 
