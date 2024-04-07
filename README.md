@@ -21,6 +21,7 @@ com/kortstie/azure-aks-setup-manual)
 
 | Secret Name | Secret Value |
 |-------------|--------------|
+| PROJECT_NAME | your project name (kortstie) |
 | REGISTRY_LOGIN_SERVER     | your acr login server (kortstieacr.azurecr.io)       |
 | RESOURCE_GROUP     | your resource group (kortstierg)       |
 | AZURE_CREDENTIALS     | complete output of the **az ad sp ...** command       |
@@ -29,7 +30,13 @@ com/kortstie/azure-aks-setup-manual)
 
 ### What happens here?
 
-Github actions starts a runner
+tbd...
+
+
+### Things to do
+
+- registry in "20-deployment.yaml" needs to be replaced automatically
+
 
 
 
