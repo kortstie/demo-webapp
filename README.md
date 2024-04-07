@@ -16,5 +16,18 @@ com/kortstie/azure-aks-setup-manual)
 
 ### 
 
+- github web ui: go to settings --> Secrets and variables --> Actions
+- create the following secrets
+
+| Secret Name | Secret Value |
+|-------------|--------------|
+| REGISTRY_LOGIN_SERVER     | your acr login server (kortstieacr.azurecr.io)       |
+| RESOURCE_GROUP     | your resource group (kortstierg)       |
+| AZURE_CREDENTIALS     | complete output of the **az ad sp ...** command       |
+| REGISTRY_USERNAME | clientId value (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) |
+| REGISTRY_PASSWORD | clientSecret value |
+
+
+
 
 
