@@ -4,10 +4,13 @@ metadata:
   name: demo  
   namespace: demo
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: demo
+
+
+    
   template:
     metadata:
       labels:
@@ -25,4 +28,13 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: failure-domain.beta.kubernetes.io/zone
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: demo
+
+
               
