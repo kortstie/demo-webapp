@@ -2,14 +2,9 @@ on: [push]
 name: Linux_Container_Workflow
 
 jobs:
-    build-and-deploy:
+    build-and-push-image:
         runs-on: ubuntu-latest
         steps:
-
-        - name: 'Login via Azure CLI'
-          uses: azure/login@v1
-          with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
 
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@main
@@ -23,6 +18,14 @@ jobs:
         - run: |
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}
+
+    deply-to-aks:
+        runs-on: ubuntu-latest
+        steps:
+        - name: 'Login via Azure CLI'
+          uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
 
         - name: 'set AKS context'
           uses: azure/aks-set-context@v3
