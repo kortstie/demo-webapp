@@ -4,6 +4,7 @@ name: Linux_Container_Workflow
 env:
   REGISTRY_LOGIN_SERVER: ${{ secrets.PROJECT_NAME }}acr.azurecr.io
   RESOURCE_GROUP: ${{ secrets.PROJECT_NAME }}rg
+  AKS_CLUSTER_NAME: ${{ secrets.PROJECT_NAME }}aks
 
 jobs:
     build-and-deploy:
@@ -32,7 +33,7 @@ jobs:
           uses: azure/aks-set-context@v3
           with:
             resource-group: '${{ env.RESOURCE_GROUP }}'
-            cluster-name: '${{ secrets.PROJECT_NAME }}aks'
+            cluster-name: '${{ env.AKS_CLUSTE_NAME }}'
 
         - name: 'create demo namespace'
           uses: Azure/k8s-deploy@v5
