@@ -2,9 +2,9 @@ on: [push]
 name: Linux_Container_Workflow
 
 env:
-  REGISTRY_LOGIN_SERVER: ${{ secrets.PROJECT_NAME }}acr.azurecr.io
-  RESOURCE_GROUP: ${{ secrets.PROJECT_NAME }}rg
-  AKS_CLUSTER_NAME: ${{ secrets.PROJECT_NAME }}aks
+  REGISTRY_LOGIN_SERVER: ${{ vars.PROJECT_NAME }}acr.azurecr.io
+  RESOURCE_GROUP: ${{ vars.PROJECT_NAME }}rg
+  AKS_CLUSTER_NAME: ${{ vars.PROJECT_NAME }}aks
 
 jobs:
     build-and-deploy:
