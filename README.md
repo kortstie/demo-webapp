@@ -20,22 +20,26 @@
 
 | Secret Name | Secret Value |
 |-------------|--------------|
-| PROJECT_NAME | your project name (kortstie) |
-| REGISTRY_LOGIN_SERVER     | your acr login server (kortstieacr.azurecr.io)       |
-| RESOURCE_GROUP     | your resource group (kortstierg)       |
 | AZURE_CREDENTIALS     | complete output of the **az ad sp ...** command       |
 | REGISTRY_USERNAME | clientId value (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) |
 | REGISTRY_PASSWORD | clientSecret value |
+
+- create the following repository variable
+
+| Variable Name | Variable Value |
+|-------------|--------------|
+| PROJECT_NAME | your project name (kortstie) |
+
 
 ### What happens here?
 
 - Each push in the main branch triggers the workflow stored in *.github/workflows*
 - a github runner machine spins up (Ubuntu latest)
-- check out this repo into the runner machine
-- build a container image containing our flask app
-- push the image to our acr container registry
-- connect to our aks cluster
-- deploy the k8s manifests
+- checks out this repo into the runner machine
+- builds a container image containing our flask app
+- pushes the image to our acr container registry
+- connects to our aks cluster
+- deploys the k8s manifests
 
 ### Test it
 
@@ -43,11 +47,9 @@
 
 Browse to the external IP, Port 5000 of the service!
 
-
-
 ### Things to do
 
-- registry in "20-deployment.yaml" needs to be replaced automatically
+- registry in "20-deployment.yaml" needs to be replaced automatically via sed
 
 
 
