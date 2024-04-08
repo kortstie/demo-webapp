@@ -1,6 +1,10 @@
 on: [push]
 name: Linux_Container_Workflow
 
+env:
+  REGISTRY_LOGIN_SERVER: ${{ env.PROJECT_NAME }}acr.azurecr.io
+  RESOURCE_GROUP: ${{ env.PROJECT_NAME }}rg
+
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
@@ -27,7 +31,7 @@ jobs:
         - name: 'set AKS context'
           uses: azure/aks-set-context@v3
           with:
-            resource-group: '${{ secrets.PROJECT_NAME }}rg'
+            resource-group: '${{ env.RESOURCE_GROUP }}'
             cluster-name: '${{ secrets.PROJECT_NAME }}aks'
 
         - name: 'create demo namespace'
