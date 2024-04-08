@@ -17,7 +17,7 @@ jobs:
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
-            login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+            login-server: ${{ env.REGISTRY_LOGIN_SERVER }}
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
@@ -48,5 +48,5 @@ jobs:
               k8s-manifests/30-service.yaml
               k8s-manifests/40-rbac.yaml
             namespace: demo
-            images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}'
+            images: '${{ env.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.run_id }}'
   
