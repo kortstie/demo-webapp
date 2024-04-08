@@ -2,8 +2,8 @@ on: [push]
 name: Linux_Container_Workflow
 
 env:
-  REGISTRY_LOGIN_SERVER: ${{ env.PROJECT_NAME }}acr.azurecr.io
-  RESOURCE_GROUP: ${{ env.PROJECT_NAME }}rg
+  REGISTRY_LOGIN_SERVER: ${{ PROJECT_NAME }}acr.azurecr.io
+  RESOURCE_GROUP: ${{ PROJECT_NAME }}rg
 
 jobs:
     build-and-deploy:
