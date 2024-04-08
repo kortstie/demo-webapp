@@ -30,7 +30,7 @@ com/kortstie/azure-aks-setup-manual)
 
 ### What happens here?
 
-tbd...
+tbd....
 
 
 ### Things to do
