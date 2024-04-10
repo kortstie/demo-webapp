@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: kortstieacr.azurecr.io/sampleapp:v1  
+        image: REPLACE_ME_REGISTRY_NAME/sampleapp:v1  
         ports:
         - containerPort: 5000
         env:
@@ -30,7 +30,7 @@ spec:
               fieldPath: spec.nodeName
       topologySpreadConstraints:
       - maxSkew: 1
-        topologyKey: failure-domain.beta.kubernetes.io/zone
+        topologyKey: topology.kubernetes.io/zone
         whenUnsatisfiable: DoNotSchedule
         labelSelector:
           matchLabels:

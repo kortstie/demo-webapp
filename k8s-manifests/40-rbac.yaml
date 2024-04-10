@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: node-reader
+  name: demo-app-reader
 rules:
 - apiGroups: [""]
   resources: ["nodes","pods"]
@@ -22,5 +22,5 @@ subjects:
   namespace: demo
 roleRef:
   kind: ClusterRole
-  name: node-reader
+  name: demo-app-reader
   apiGroup: rbac.authorization.k8s.io
