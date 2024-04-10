@@ -2,8 +2,8 @@
 
 ## Purpose of this repo
 
-- deploy an app to show some information about the k8s cluster and nodes
-- demonstrate how an app distributes over different nodes and zones using a k8s topology spread
+- deploy an app to show some information about a k8s cluster, its nodes and the pods of this app
+- demonstrate how an app distributes over different availability zones using a k8s topology spread
 - show how an app gets deployed using github actions
 
 ## Prerequisites
@@ -46,12 +46,6 @@
     oc -n demo get service
 
 Browse to the external IP, Port 5000 of the service!
-
-### Things to do
-
-- registry in "20-deployment.yaml" needs to be replaced automatically via sed
-
-
 
 
 
