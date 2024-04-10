@@ -11,9 +11,13 @@ jobs:
         runs-on: ubuntu-latest
         steps:
 
-        - name: 'Checkout GitHub Action'
+        - name: 'Checkout this GitHub repo'
           uses: actions/checkout@main
 
+        - name: 'Set our registry name in the deployment manifest'
+          run: |
+            sed -i 's#REPLACE_ME_REGISTRY_NAME#${{ env.REGISTRY_LOGIN_SERVER }}#' k8s-manifests/20-deployment.yaml
+        
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
@@ -40,7 +44,7 @@ jobs:
           with:
             manifests: k8s-manifests/10-namespace.yaml
              
-        - name: 'Deploy to AKS'
+        - name: 'Deploy our app to AKS'
           uses: Azure/k8s-deploy@v5
           with:
             manifests: |
