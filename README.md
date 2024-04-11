@@ -1,5 +1,7 @@
 # K8s flask demo app
 
+![title](images/title.jpg)
+
 ## Purpose of this repo
 
 - deploy an app to show some information about a k8s cluster, its nodes and the pods of this app
